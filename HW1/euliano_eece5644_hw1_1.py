@@ -1,11 +1,12 @@
 # %%
+# Intro to Machine Learning and Pattern Recognition - EECE5644
+# Homework 1 - Problem 1
+# Author: Matthew Euliano
 import matplotlib.pyplot as plt #General Plotting
 from matplotlib import cm
 import numpy as np
 from scipy.stats import multivariate_normal
 from sys import float_info # Threshold smallest positive floating value
-
-from sklearn.metrics import confusion_matrix
 
 # Set seed to generate reproducible "pseudo-randomness" (handles scipy's "randomness" too)
 np.random.seed(4)
@@ -275,7 +276,7 @@ def main():
     # %%
     # calculate mu projections
     mu0proj = np.array([np.average(X[labels==0][:,i]) for i in range(n)]).T
-    mu1proj = np.array([np.average(X[labels==1][:,i]) for i in range(n)]).T# calculate covaria nceproj e ction s
+    mu1proj = np.array([np.average(X[labels==1][:,i]) for i in range(n)]).T
     mu_proj = np.array([mu0proj, mu1proj])
 
     sigma0proj = np.cov(X[labels==0], rowvar=False)

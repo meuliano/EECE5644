@@ -57,7 +57,7 @@ def main():
         # for more classes, this can be [1 2 2 0 1 3 1 3 0 ...]
         labels[indices] = i * np.ones(Nl)
         
-        # for each valid index, fill the 
+        # for each valid index...
         X[indices, :] = multivariate_normal.rvs(mu[i], sigma[i], Nl)
         plt.plot(X[labels==i, 0], X[labels==i, 1], marker_shapes[i-1] + marker_colors[i-1], label="True Class {}".format(i))
 

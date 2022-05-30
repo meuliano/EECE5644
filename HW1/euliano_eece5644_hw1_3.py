@@ -1,4 +1,7 @@
 # %%
+# Intro to Machine Learning and Pattern Recognition - EECE5644
+# Homework 1 - Problem 3
+# Author: Matthew Euliano
 from pandas import read_csv
 import matplotlib.pyplot as plt #General Plotting
 import numpy as np
@@ -96,7 +99,7 @@ def pca_reducttion(X):
     D = np.diag(lambdas[idx])
 
     # Calculate the PC projections of zero-mean samples (in z)
-    Z = C.dot(U)
+    Z = np.real(C.dot(U))
 
     # Let's see what it looks like only along the first two PCs
     fig = plt.figure(figsize=(10, 10))
@@ -119,8 +122,8 @@ def pca_reducttion(X):
     for m in no_components:
         # Reconstruct based on only the 'm' components (also revert mean-centering effect)
         X_hat = Z[:, :m].dot(U[:, :m].T) + mu_hat
-        rmse[m-1] = np.sqrt(np.mean((X - X_hat)**2))
-        sum_eigenvals[m-1] = np.sum(D[:m])
+        rmse[m-1] = np.real(np.sqrt(np.mean((X - X_hat)**2)))
+        sum_eigenvals[m-1] = np.real(np.sum(D[:m]))
         
     # Fraction of variance explained
     fraction_var = sum_eigenvals / np.trace(Sigma_hat)
@@ -134,7 +137,7 @@ def pca_reducttion(X):
 
     # First eigenvalue should be significantly larger than the rest
     plt.figure(2)
-    plt.plot(no_components, sum_eigenvals)
+    plt.plot(no_components, np.real(sum_eigenvals))
     plt.xlabel("Dimension m of PCA")
     plt.ylabel("Sum of Eigenvalues")
     plt.show()
