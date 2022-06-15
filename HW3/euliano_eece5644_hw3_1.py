@@ -4,10 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import multivariate_normal
 from sys import float_info # Threshold smallest positive floating value
-from sklearn.model_selection import cross_val_score, KFold
-from sklearn.metrics import confusion_matrix
-
-import pandas as pd
+from sklearn.model_selection import KFold
 
 import torch
 import torch.nn as nn
@@ -34,7 +31,7 @@ def generate_data_from_gmm(N, pdf_params):
         Nl = len(indices)  
         labels[indices] = l * np.ones(Nl) - 1
         if n == 1:
-            X[indices, 0] =  norm.rvs(pdf_params['m'][l-1], pdf_params['C'][l-1], Nl)
+            X[indices, 0] =  multivariate_normal(pdf_params['m'][l-1], pdf_params['C'][l-1], Nl)
         else:
             X[indices, :] =  multivariate_normal.rvs(pdf_params['m'][l-1], pdf_params['C'][l-1], Nl)
     

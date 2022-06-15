@@ -3,12 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import multivariate_normal
-from sys import float_info # Threshold smallest positive floating value
-from sklearn.model_selection import cross_val_score, KFold
-from sklearn.metrics import confusion_matrix
-
-import torch
-import torch.nn as nn
+from sklearn.model_selection import KFold
 
 # Set seed to generate reproducible "pseudo-randomness" (handles scipy's "randomness" too)
 np.random.seed(4)
